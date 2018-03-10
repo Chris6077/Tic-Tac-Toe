@@ -58,31 +58,6 @@ onePlayer = function(){
 			$(".p1")[0].innerHTML = messages["p1s"] + p1s;
 			$(".p2")[0].innerHTML = messages["p2s"] + p2s;
 		}
-		again = function (event) {
-		    var cells = field.getElementsByTagName("td"),
-		        button, cell;
-		    current = 1;
-		    finished = false;
-		    field.removeAttribute("class");
-
-		    for (r = 0; r < 3; r++) {
-		        for (c = 0; c < 3; c++) {
-		          cell = cells[r * 3 + c];
-		          cell.removeAttribute("class");
-		          cell.innerHTML = "";
-		          button = document.createElement("button");
-		          button.innerHTML = labels[r][c] + " " + messages["select"];
-		          cell.appendChild(button);
-		        }
-		    }
-	    	caption.innerHTML = messages[players[current] + "'s-turn"];
-	    	field.parentNode.removeEventListener("click", this);
-		}
-		menu = function (event){
-			$(".container")[0].innerHTML = '<button class="again" onclick="again()">Restart</button> <button class="buttons" onclick="onePlayer()">1 Player</button> <button class="buttons" onclick="twoPlayer()">2 Player</button> <button class="menu" onclick="menu()">Menu</button>';
-			$(".again").hide();
-			$(".menu").hide();
-		}
 		function check () {
 		  	var tds = field.getElementsByTagName("td"),
 		    	full = true,
