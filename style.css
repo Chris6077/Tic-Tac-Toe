@@ -25,13 +25,23 @@ body {
   padding: 2.5%;
   height: 300px;
   margin: 5% auto;
-  margin-top: 15%;
 }
 button:hover {
   box-shadow: inset 0 5px 5px 0 #434343;
 }
 .buttons {
-  margin-left: 40%;
+  margin-left: 20%;
+  margin-top: 7.5%;
+  font-family: "Montserrat";
+  background-color: #DDDDDD;
+  font-size: 20px;
+  padding: 5%;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  text-transform: uppercase;
+  text-align: center; 
 }
 .col-md-8 {
   color: white;
@@ -42,4 +52,88 @@ button:hover {
   vertical-align: baseline;
   display: block;
   margin-top: 15%;
+}
+table {
+  border: 2px solid #7777DD;
+  border-collapse: collapse;
+  margin-top: -20%;
+  margin-left: 35%;
+}
+table:not(.game-over) td {
+  cursor: pointer;
+}
+td button {
+  left: -100vw;
+  position: absolute;
+}
+.o {
+  color: #7777DD;
+}  
+.o:after{
+  content: "O";
+  top: -0.2em;
+}
+.x {
+  color: #7777DD;
+}  
+.x:after{
+  content: "X";
+  top: -0.2em;
+}
+td {
+  border: 1px solid #DDDDDD;
+  height: 6em;
+  width: 6em;
+  position: relative;
+  text-align: center;
+  border-collapse: collapse;
+}
+.misc {
+  margin-top: 15%;
+  text-align: center;
+}
+.score {
+  display: inline;
+  font-size: 200%; 
+}
+.p1 {
+  margin-right: 15%;
+  color: #7777DD;
+}
+.p2 {
+  margin-left: 15%;
+  color: #DD7777;
+}
+.caption {
+  font-size: 200%;
+  font-family: "Pacifico";
+  color: #DDDDDD;
+}
+.again {
+  margin-left: 7.5%;
+  margin-top: 8%;
+  margin-bottom: 0%;
+  font-family: "Montserrat";
+  background-color: #DDDDDD;
+  font-size: 20px;
+  padding: 5%;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center; 
+}
+.menu {
+  margin-left: 50%;
+  margin-bottom: 0%;
+  margin-top: 0%;
+  font-family: "Montserrat";
+  background-color: #DDDDDD;
+  font-size: 20px;
+  padding: 5%;
+  border: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-align: center; 
 }

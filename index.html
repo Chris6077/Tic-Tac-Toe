@@ -2,15 +2,25 @@
 	<html lang="en">
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  			<title>TITLE</title>
+  			<title>TIC-TAC-TOE</title>
   			<link rel="stylesheet" href="./style.css"/>
   			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  			<script src="./backend.js"></script>
         <link rel="icon" href="https://raw.githubusercontent.com/Chris6077/Portfolio/master/images/logo.png">
 			<style type="text/css">
 			</style>
 		</head>
 		<body>
+			<div class="misc">
+				<h2 class="caption">INIT CAPTION</h2>
+    			<h1 class="score p1">INIT SCORE</h1>
+    			<h1 class="score p2">INIT SCORE</h1>
+			</div>
     		<div class="container">
+    			<button class="again" onclick="again()">Restart</button>
+    			<button class="buttons" onclick="onePlayer()">1 Player</button>
+    			<button class="buttons btn2" onclick="twoPlayer()">2 Player</button>
+    			<button class="menu" onclick="menu()">Menu</button>
   			</div>
   			<div id="footer">
                 <div class="col-md-8">
