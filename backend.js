@@ -35,7 +35,7 @@ onePlayer = function(){
 		again = function (event) {
 		    var cells = field.getElementsByTagName("td"),
 		        button, cell;
-		    current = Math.round(Math.random());
+		    current = 1;
 		    finished = false;
 		    field.removeAttribute("class");
 
