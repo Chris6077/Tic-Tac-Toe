@@ -28,6 +28,7 @@ onePlayer = function(){
 			    "new game?": "Want to play again?"
 			},
 	  		finished, games, b, c, i, r, tr, p1s = 0, p2s = 0;
+	  	var ai, op;
 	  	updateScores = function(){
 			$(".p1")[0].innerHTML = messages["p1s"] + p1s;
 			$(".p2")[0].innerHTML = messages["p2s"] + p2s;
@@ -116,17 +117,91 @@ onePlayer = function(){
 		    	}
 		  	}
 		  	if(!finished){
+		  		var done = false;
 			  	setTimeout(function() {
-			  		var el = $("td")[Math.floor(Math.random()*$("td").length)];
-			  		while(el.className.length >= 1) el = $("td")[Math.floor(Math.random()*$("td").length)];
+			  		//var el = $("td")[Math.floor(Math.random()*$("td").length)];
+			  		//while(el.className.length >= 1) el = $("td")[Math.floor(Math.random()*$("td").length)];
+			  		ai = players[current];
+					op = players[1-current];
+					var cb = [];
+					var x = $("td");
+				    for(var idx = 0; idx < x.length; idx++){
+				    	if(x[idx].className === "") cb.push(idx);
+				    	else cb.push(x[idx].className);
+				    }
+					var aiidx = evaluate(cb, ai);
+					var el = $("td")[aiidx];
 			  		el.className = players[current];
 			  		check();
 			  		if(!finished){
-			  			current = 1- current;
+			  			current = 1 - current;
 			  			caption.innerHTML = messages[players[current] + "'s-turn"];
 			  		}
+			  		done = true;
 			  	}, 1000);
 		  	}
+		}
+		function evaluate(currentBoard, player) {
+		    var moves = [];
+		    var availableFields = currentBoard.map((val, idx) => (val === "") ? idx : val).filter(s => s != op && s != ai);
+		    // check for an important field
+		    if (hasWon(currentBoard, op)) {
+		        return -10;
+		    } else if (hasWon(currentBoard, ai)) {
+		        return 10;
+		    } else if (availableFields.length === 0) {
+		        return 0;
+		    }
+		    // if not simulate future moves
+		    for (var i = 0; i < availableFields.length; i++) {
+		        var move = {
+		            index: currentBoard[availableFields[i]]
+		        };
+
+		        currentBoard[availableFields[i]] = player;
+		        var score = evaluate(currentBoard, (player === ai) ? op : ai)
+		        move.score = score;
+		        currentBoard[availableFields[i]] = move.index;
+
+		        moves.push(move);
+		    }
+		    var bestMove = {
+		        index: undefined,
+		        score: player === ai ? -Infinity : Infinity
+		    };
+		    if (player === ai) {
+		        for (var m of moves) {
+		            if (m.score > bestMove.score) {
+		                bestMove = m;
+		            }
+		        }
+		    } else {
+		        for (var m of moves) {
+		            if (m.score < bestMove.score) {
+		                bestMove = m;
+		            }
+		        }
+		    }
+		    // return the chosen move (object) from the array to the higher depth
+		    return bestMove.index;
+		}
+
+		function hasWon(board, player) {
+		    var winConditions = [
+		        [0, 1, 2],
+		        [3, 4, 5],
+		        [6, 7, 8],
+		        [0, 3, 6],
+		        [1, 4, 7],
+		        [2, 5, 8],
+		        [0, 4, 8],
+		        [2, 4, 6],
+		    ];
+		    var result = false;
+		    for (var condition of winConditions)
+		        if (board[condition[0]] === player && board[condition[1]] === player && board[condition[2]] === player)
+		            result = true;
+		    return result;
 		}
 		element.appendChild(field);
 		field.appendChild(document.createElement("tbody"));
