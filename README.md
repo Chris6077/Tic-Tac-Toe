@@ -1,4 +1,4 @@
 # Tic-Tac-Toe
 ttt game
 
-### Click [here](https://ttt.eviscerate.me/) to check it out!
+### Click [here](https://ttt.bashit.me/) to check it out!
